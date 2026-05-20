@@ -1,6 +1,6 @@
 # Inno Project
 
-Microservices course monorepo (Spring Boot 3.4, Java 21).
+Microservices  course monorepo (Spring Boot 3.4, Java 21).
 
 ## Modules
 
