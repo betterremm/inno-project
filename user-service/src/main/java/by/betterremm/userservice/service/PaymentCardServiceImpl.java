@@ -28,10 +28,10 @@ public class PaymentCardServiceImpl implements PaymentCardService {
     private final PaymentCardRepository paymentCardRepository;
     private final UserService userService;
     private final PaymentCardMapper paymentCardMapper;
-    private final ;
+    private final CacheManager cacheManager;
 
     public PaymentCardServiceImpl(PaymentCardRepository paymentCardRepository, UserService userService,
-                                  PaymentCardMapper paymentCardMapper, ) {
+                                  PaymentCardMapper paymentCardMapper, CacheManager cacheManager) {
         this.paymentCardRepository = paymentCardRepository;
         this.userService = userService;
         this.paymentCardMapper = paymentCardMapper;
