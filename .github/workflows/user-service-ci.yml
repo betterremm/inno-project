@@ -2,7 +2,7 @@ name: User Service CI
 
 on:
   push:
-    branches: [dev, main, "feature/**"]
+    branches: [dev, main, user-service, "user-service_*", "feature/**"]
     paths:
       - "user-service/**"
       - "pom.xml"
