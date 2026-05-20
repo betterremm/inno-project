@@ -18,7 +18,9 @@ Microservices  course monorepo (Spring Boot 3.4, Java 21).
 ```bash
 mvn clean verify
 ```
-
+123
+123
+123
 Build a single module:
 
 ```bash
