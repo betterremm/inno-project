@@ -16,31 +16,36 @@ See [`.env.example`](.env.example). All database and Redis settings are external
 |----------|-------------|
 | `SPRING_PROFILES_ACTIVE` | `local` or `docker` |
 | `DB_URL` | JDBC URL for PostgreSQL |
-| `DB_USERNAME` | Database user |
-| `DB_PASSWORD` | Database password |
+| `DB_USERNAME` | Application DB user (not `postgres` superuser) |
+| `DB_PASSWORD` | Application DB password |
+| `POSTGRES_*` / `APP_DB_*` | Used by Docker Compose and `docker/postgres/init` |
 | `REDIS_HOST` | Redis host |
 | `REDIS_PORT` | Redis port |
 | `SERVER_PORT` | HTTP port (default 8080) |
 
 ## Run locally
 
-1. Start PostgreSQL and Redis (or use Docker only for infra).
-2. Create database `user_service_db` and user `user_service`.
-3. Run:
+1. Copy `.env.example` to `.env` in this module and set values.
+2. Start PostgreSQL and Redis (or use Docker Compose for infra only).
+3. Create the DB and application user (same grants as `docker/postgres/init/01-create-app-user.sh`), or run Compose once to provision them.
+4. From repository root:
 
 ```bash
-mvn -pl user-service spring-boot:run -Dspring-boot.run.profiles=local
+cd user-service
+mvn spring-boot:run
 ```
+
+Spring loads variables from `user-service/.env` (file is gitignored).
 
 ## Run with Docker Compose
 
-From repository root:
+From `user-service/` (requires `.env` from `.env.example`):
 
 ```bash
-docker compose -f user-service/docker-compose.yml up --build
+docker compose up --build
 ```
 
-Uses profile `docker` with service hostnames `postgres` and `redis`.
+Postgres starts as superuser `POSTGRES_USER` only for init. The init script creates `APP_DB_USERNAME` with DML (+ schema DDL for Liquibase) on `POSTGRES_DB`. The app connects as `APP_DB_USERNAME`, not as `postgres`.
 
 ## API (v1)
 
