@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: 001-create-users-table
-      author: betterremm
+      author: innowise
       changes:
         - createTable:
             tableName: users
