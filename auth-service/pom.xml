@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.innowise</groupId>
+        <groupId>by.betterremm</groupId>
         <artifactId>inno-project</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
