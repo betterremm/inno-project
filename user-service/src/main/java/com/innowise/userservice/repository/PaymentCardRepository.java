@@ -25,4 +25,7 @@ public interface PaymentCardRepository extends JpaRepository<PaymentCardEntity, 
     int deactivateAllByUserId(@Param("userId") Long userId);
 
     long countByUserId(Long userId);
+
+    @Query("SELECT c.user.id FROM PaymentCardEntity c WHERE c.id = :cardId")
+    Optional<Long> findUserIdByCardId(@Param("cardId") Long cardId);
 }

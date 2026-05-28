@@ -47,6 +47,13 @@ docker compose up --build
 
 Postgres starts as superuser `POSTGRES_USER` only for init. The init script creates `APP_DB_USERNAME` with DML (+ schema DDL for Liquibase) on `POSTGRES_DB`. The app connects as `APP_DB_USERNAME`, not as `postgres`.
 
+## Security
+
+All endpoints require `Authorization: Bearer <accessToken>` from **auth-service**.
+
+- **ADMIN** — full access (list users/cards, activate/deactivate users, etc.).
+- **USER** — only own user profile and own cards (`userId` from JWT must match).
+
 ## API (v1)
 
 | Method | Path | Description |
