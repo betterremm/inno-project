@@ -18,6 +18,7 @@
 
     <modules>
         <module>user-service</module>
+        <module>auth-service</module>
     </modules>
 
     <properties>
@@ -27,6 +28,7 @@
         <mapstruct.version>1.6.3</mapstruct.version>
         <testcontainers.version>1.20.4</testcontainers.version>
         <sonar.maven.plugin.version>4.0.0.4121</sonar.maven.plugin.version>
+        <jjwt.version>0.12.6</jjwt.version>
     </properties>
 
     <dependencyManagement>
@@ -37,6 +39,21 @@
                 <version>${testcontainers.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jjwt.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

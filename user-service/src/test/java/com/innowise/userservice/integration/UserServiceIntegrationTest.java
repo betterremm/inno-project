@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import com.innowise.userservice.config.TestSecurityConfig;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -29,6 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @Testcontainers(disabledWithoutDocker = true)
 @ActiveProfiles("test")
+@Import(TestSecurityConfig.class)
 class UserServiceIntegrationTest {
 
     @Container
@@ -47,6 +50,7 @@ class UserServiceIntegrationTest {
         r.add("REDIS_PORT", () -> redis.getMappedPort(6379).toString());
         r.add("SPRING_PROFILES_ACTIVE", () -> "test");
         r.add("SERVER_PORT", () -> "0");
+        r.add("JWT_SECRET", () -> "test-jwt-secret-key-min-32-chars-long");
     }
 
     @Autowired MockMvc mockMvc;
